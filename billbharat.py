@@ -78,7 +78,6 @@ def finalize_bill():
     except mysql.connector.Error as err:
         messagebox.showerror("Error", f"Error inserting data: {err}")
 
-
     # Clear input fields and bill_items
     entry_name.delete(0, tk.END)
     entry_phone.delete(0, tk.END)
@@ -94,66 +93,67 @@ def remove_bill():
 
 root = tk.Tk()
 root.title("BillBharat")
-root.geometry("650x450") 
-root.configure(bg="#D3D3D3")
-
+root.geometry("650x450")
+root.configure(bg="#F0F8FF")
 
 # Custom font for bold text
 bold_font = font.Font(root, weight="bold")
-text_display = tk.Text(root, width=40, height=25)
+text_display = tk.Text(root, width=40, height=25, bg="#F5F5F5", fg="black", font=("Arial", 10), bd=2, relief="sunken")
 text_display.tag_configure("bold", font=bold_font)
 
 # Frames for layout
-display_frame = tk.Frame(root)
+display_frame = tk.Frame(root, bg="#F0F8FF",bd=5, relief="ridge")
 display_frame.grid(row=0, column=0, padx=10, pady=10, sticky="ns")
 
-input_frame = tk.Frame(root)
-input_frame.grid(row=0, column=1, padx=10, pady=10, sticky="ns")
+input_frame = tk.Frame(root, bg="#F0F8FF",bd=5, relief="ridge")
+input_frame.grid(row=0, column=1, padx=(10, 10), pady=(10, 10), sticky="ns")
 
 # Big display area
-text_display = tk.Text(display_frame, width=40, height=25)
+text_display = tk.Text(display_frame, width=40, height=25, bg="#FFFFFF", fg="black")
 text_display.pack()
 
 # Input fields
-tk.Label(input_frame, text="Name").grid(row=0, column=0, sticky="w")
-entry_name = tk.Entry(input_frame, width=25,bg='#FFFFE0')
+tk.Label(input_frame, text="Name", bg="#F0F8FF").grid(row=0, column=0, sticky="w")
+entry_name = tk.Entry(input_frame, width=25, bg='#FFFFE0',bd=2, relief="ridge")
 entry_name.grid(row=0, column=1, padx=5, pady=5)
 
-tk.Label(input_frame, text="Phone Number").grid(row=1, column=0, sticky="w")
-entry_phone = tk.Entry(input_frame, width=25,bg='#FFFFE0')
+tk.Label(input_frame, text="Phone Number", bg="#F0F8FF").grid(row=1, column=0, sticky="w")
+entry_phone = tk.Entry(input_frame, width=25, bg='#FFFFE0')
 entry_phone.grid(row=1, column=1, padx=5, pady=5)
 
-tk.Label(input_frame, text="Date").grid(row=2, column=0, sticky="w")
-entry_date = DateEntry(input_frame, width=22, date_pattern="yyyy-mm-dd",bg='#FFFFE0')
+tk.Label(input_frame, text="Date", bg="#F0F8FF").grid(row=2, column=0, sticky="w")
+entry_date = DateEntry(input_frame, width=22, date_pattern="yyyy-mm-dd", bg='#FFFFE0')
 entry_date.grid(row=2, column=1, padx=5, pady=5)
 
-tk.Label(input_frame, text="Goods").grid(row=3, column=0, sticky="w")
-entry_goods = tk.Entry(input_frame, width=25,bg='#FFFFE0')
+tk.Label(input_frame, text="Goods", bg="#F0F8FF").grid(row=3, column=0, sticky="w")
+entry_goods = tk.Entry(input_frame, width=25, bg='#FFFFE0')
 entry_goods.grid(row=3, column=1, padx=5, pady=5)
 
-tk.Label(input_frame, text="Quantity").grid(row=4, column=0, sticky="w")
-entry_quantity = tk.Entry(input_frame, width=25,bg='#FFFFE0')
+tk.Label(input_frame, text="Quantity", bg="#F0F8FF").grid(row=4, column=0, sticky="w")
+entry_quantity = tk.Entry(input_frame, width=25, bg='#FFFFE0')
 entry_quantity.grid(row=4, column=1, padx=5, pady=5)
 
-tk.Label(input_frame, text="Price").grid(row=5, column=0, sticky="w")
-entry_price = tk.Entry(input_frame, width=25,bg='#FFFFE0')
+tk.Label(input_frame, text="Price", bg="#F0F8FF").grid(row=5, column=0, sticky="w")
+entry_price = tk.Entry(input_frame, width=25, bg='#FFFFE0')
 entry_price.grid(row=5, column=1, padx=5, pady=5)
 
 # Payment Type
-tk.Label(input_frame, text="Payment Type").grid(row=6, column=0, sticky="w")
+tk.Label(input_frame, text="Payment Type", bg="#F0F8FF").grid(row=6, column=0, sticky="w")
 payment_var = tk.StringVar()
 payment_options = tk.OptionMenu(input_frame, payment_var, "Cash", "Online")
+payment_options.config(bg="#E6E6FA",bd=2, relief="ridge")
 payment_options.grid(row=6, column=1, padx=5, pady=5)
 
 # Buttons
-btn_add = tk.Button(input_frame, text="Add", width=10, command=add_item,bg='#4CAF50')
+btn_add = tk.Button(input_frame, text="Add", width=10, command=add_item, bg='#32CD32', fg="white",bd=2, relief="ridge")
 btn_add.grid(row=7, column=0, pady=10)
 
-btn_bill = tk.Button(input_frame, text="Bill", width=10, command=finalize_bill,bg='#4CAF50')
+btn_bill = tk.Button(input_frame, text="Bill", width=10, command=finalize_bill, bg='#4682B4', fg="white",bd=2, relief="ridge")
 btn_bill.grid(row=7, column=1, pady=10)
 
-btn_remove_bill = tk.Button(input_frame, text="Remove Bill", width=20, command=remove_bill,bg='#FF4500')
+btn_remove_bill = tk.Button(input_frame, text="Remove Bill", width=20, command=remove_bill, bg='#FF4500', fg="white",bd=2, relief="ridge") 
 btn_remove_bill.grid(row=8, column=0, columnspan=2, pady=5)
+
 
 root.mainloop()
 
